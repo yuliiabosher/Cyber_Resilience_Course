@@ -1,9 +1,7 @@
 {
     "body":{
         "data":{
-         "num1":5,
-         "num2":3,
-         "operation":"divide"   
+         "csv_filename":"populations.csv" 
         }
     }
 }

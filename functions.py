@@ -1,15 +1,12 @@
-def add_numbers(num1, num2):
-  sum = num1 + num2
-  return sum
-def multiply_numbers(num1,num2): 
-  mult=num1*num2
-  return mult
-def subtract_numbers(num1,num2):
-  sub=num1-num2
-  return sub	
-def divide_numbers(num1,num2):
-  if num2!=0:
-    div=num1/num2
-    return div
-  else:
-     return "cannot divide by zero"
+import os
+import boto3
+
+def get_S3_client():
+  resource = boto3.client("s3")
+  return resource
+def get_file(client, filename):
+  file_object = client.get_object(Bucket=os.environ.get('BUCKET_NAME'), Key=filename)
+  data_file = file_object['Body'].read()
+  return str(data_file.decode('utf-8'))
+
+  
