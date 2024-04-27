@@ -1,0 +1,133 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2024-03-02T17:56:43Z",
+    "title" : "myPythonProjectFunc-API"
+  },
+  "host" : "a595c6ya39.execute-api.eu-west-2.amazonaws.com",
+  "basePath" : "/default",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/myPythonProjectFunc" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/Empty"
+            },
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseParameters" : {
+                "method.response.header.Access-Control-Allow-Methods" : "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+                "method.response.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Origin" : "'*'"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match",
+          "type" : "mock"
+        }
+      },
+      "x-amazon-apigateway-any-method" : {
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ],
+        "x-amazon-apigateway-integration" : {
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-2:975050009133:function:myPythonProjectFunc/invocations",
+          "responses" : {
+            ".*" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "type" : "aws_proxy"
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "x-api-key",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "Empty" : {
+      "type" : "object",
+      "title" : "Empty Schema"
+    }
+  },
+  "x-amazon-apigateway-documentation" : {
+    "version" : "1.1",
+    "createdDate" : "2024-03-11T20:04:19Z",
+    "documentationParts" : [ {
+      "location" : {
+        "type" : "API"
+      },
+      "properties" : {
+        "description" : "My Python Project",
+        "authorisation" : "API key",
+        "methods" : {
+          "POST" : {
+            "description" : "Check if a list of schools and their coordinates are in a bucket file. Append those schools and coordinates not already in it to the bucket file.",
+            "path" : "/MyPythonProject",
+            "body" : {
+              "data" : [ [ "Bannockburn Primary School & Nursery", 51.4869172, 0.1015561 ], [ "St Margaret Clitherow Primary School", 51.50103289999999, 0.1132992 ] ]
+            }
+          },
+          "GET" : {
+            "description" : "Return a list of schools and their coordinates stored in a bucket file",
+            "path" : "/MyPythonProject"
+          }
+        }
+      }
+    } ]
+  },
+  "x-amazon-apigateway-gateway-responses" : {
+    "DEFAULT_5XX" : {
+      "responseParameters" : {
+        "gatewayresponse.header.Access-Control-Allow-Methods" : "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+        "gatewayresponse.header.Access-Control-Allow-Origin" : "'*'",
+        "gatewayresponse.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      }
+    },
+    "DEFAULT_4XX" : {
+      "responseParameters" : {
+        "gatewayresponse.header.Access-Control-Allow-Methods" : "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
+        "gatewayresponse.header.Access-Control-Allow-Origin" : "'*'",
+        "gatewayresponse.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      }
+    }
+  }
+}
